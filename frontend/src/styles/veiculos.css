@@ -1,0 +1,33 @@
+.barra-filtro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.abas {
+  display: inline-flex;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.abas button {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  background: #fff;
+  color: var(--cor-texto-suave);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.abas button + button {
+  border-left: 1px solid var(--cor-borda);
+}
+
+.abas button.ativo {
+  background: var(--cor-primaria);
+  color: #fff;
+}

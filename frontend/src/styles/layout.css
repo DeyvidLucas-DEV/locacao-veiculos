@@ -1,0 +1,175 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.barra-lateral {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #1f2933;
+  color: #d9dee4;
+}
+
+.marca {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid #323e4a;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.marca span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #9aa5b1;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0.75rem 0;
+}
+
+.menu a {
+  padding: 0.6rem 1.25rem;
+  border-left: 3px solid transparent;
+  color: #c3cad2;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.menu a:hover {
+  background: #28333e;
+  color: #fff;
+}
+
+.menu a.active {
+  border-left-color: #6fa8e8;
+  background: #2b3743;
+  color: #fff;
+  font-weight: 500;
+}
+
+.usuario-sessao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid #323e4a;
+}
+
+.usuario-dados {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 0.82rem;
+}
+
+.usuario-dados strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.usuario-dados strong,
+.usuario-dados span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.usuario-dados span {
+  color: #9aa5b1;
+  font-size: 0.75rem;
+}
+
+.botao-sair {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #45525f;
+  border-radius: var(--raio);
+  background: transparent;
+  color: #d9dee4;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.botao-sair:hover {
+  border-color: #c94a4a;
+  color: #fff;
+  background: #c94a4a;
+}
+
+.conteudo {
+  flex: 1;
+  min-width: 0;
+  max-width: 1180px;
+  padding: 1.5rem 2rem 3rem;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .barra-lateral {
+    position: static;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .marca {
+    border-bottom: none;
+    padding: 0.75rem 1rem;
+  }
+
+  .marca span {
+    display: none;
+  }
+
+  .menu {
+    order: 3;
+    flex-basis: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    border-top: 1px solid #323e4a;
+  }
+
+  .menu a {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 0.6rem 0.5rem;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    font-size: 0.85rem;
+  }
+
+  .menu a.active {
+    border-bottom-color: #6fa8e8;
+  }
+
+  .usuario-sessao {
+    margin-left: auto;
+    border-top: none;
+    padding: 0.75rem 1rem;
+  }
+
+  .usuario-dados {
+    display: none;
+  }
+
+  .conteudo {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+}

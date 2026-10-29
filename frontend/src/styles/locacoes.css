@@ -1,0 +1,89 @@
+.grade-locacoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.9rem;
+}
+
+.locacao-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--cor-borda);
+  border-left: 3px solid var(--cor-alerta);
+  border-radius: var(--raio);
+}
+
+.locacao-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.locacao-card h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.locacao-card header .placa {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.locacao-card footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--cor-borda-suave);
+  font-size: 0.875rem;
+}
+
+.locacao-card dl,
+.painel-lateral dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.locacao-card dt,
+.painel-lateral dt {
+  color: var(--cor-texto-suave);
+}
+
+.locacao-card dd,
+.painel-lateral dd {
+  margin: 0;
+  text-align: right;
+}
+
+.locacao-colunas {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.resumo-locacao .valor-destaque {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .locacao-colunas {
+    grid-template-columns: 1fr;
+  }
+}

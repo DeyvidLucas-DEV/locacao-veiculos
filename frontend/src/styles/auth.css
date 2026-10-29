@@ -1,0 +1,46 @@
+.tela-autenticacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+}
+
+.caixa-autenticacao {
+  width: 100%;
+  max-width: 380px;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-top: 4px solid var(--cor-primaria);
+  border-radius: var(--raio);
+}
+
+.marca-autenticacao {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--cor-borda-suave);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.marca-autenticacao span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--cor-texto-suave);
+}
+
+.cartao-autenticacao {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.cartao-autenticacao h1 {
+  font-size: 1.2rem;
+}
+
+.cartao-autenticacao .texto-apoio {
+  margin-top: 0;
+}
+
+.cartao-autenticacao .botao {
+  align-self: stretch;
+}
