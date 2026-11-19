@@ -8,7 +8,7 @@ Trabalho prático da disciplina Programação com Frameworks Web.
 
 | Nome completo | RA / Matrícula |
 | --- | --- |
-| Deyvid Amorim |  |
+| Deyvid Amorim | 34040722 |
 | Guilherme Mendonça Silva | 38430061 |
 | Caio Alves De Medeiros | 38830353 |
 
