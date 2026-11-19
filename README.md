@@ -8,10 +8,9 @@ Trabalho prático da disciplina Programação com Frameworks Web.
 
 | Nome completo | RA / Matrícula |
 | --- | --- |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| Deyvid Amorim |  |
+| Guilherme Mendonça Silva | 38430061 |
+| Caio |  |
 
 ## Tecnologias
 
@@ -189,6 +188,12 @@ O teste `aceita apenas uma de várias locações simultâneas para o mesmo veíc
 * MySQL 8
 * npm
 
+Antes de começar, confirme no terminal se a versão ativa do Node.js atende ao requisito mínimo:
+
+```bash
+node -v
+npm -v
+```
 ## Configuração do MySQL
 
 Crie um usuário e os bancos de desenvolvimento e de testes. Exemplo:
@@ -201,15 +206,28 @@ GRANT ALL PRIVILEGES ON locacao_veiculos.* TO 'locacao'@'localhost';
 GRANT ALL PRIVILEGES ON locacao_veiculos_test.* TO 'locacao'@'localhost';
 ```
 
+> **Dica:** prefira uma senha sem caracteres reservados de URL (como `@`, `#`, `/` ou `:`), pois a conexão é lida com `new URL(process.env.DATABASE_URL)` no backend.
+
 Para criar novas migrations com `npx prisma migrate dev`, o Prisma precisa de um banco temporário (shadow database). Nesse caso, conceda também permissão de criar bancos ao usuário, por exemplo `GRANT CREATE, DROP ON *.* TO 'locacao'@'localhost';`. Para apenas executar o projeto isso não é necessário.
 
 ## Variáveis de ambiente
 
-Copie os arquivos de exemplo e preencha os valores:
+> **Importante:** crie e preencha os arquivos `.env` **antes** de rodar `npm install` no backend. O `npm install` executa `prisma generate` automaticamente (`postinstall`), que exige que a variável `DATABASE_URL` já esteja definida em `backend/.env`.
+
+Na raiz do projeto (`locacao-veiculos`), copie os arquivos de exemplo:
+
+**PowerShell, Git Bash, Linux ou macOS:**
 
 ```bash
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
+```
+
+**Prompt de Comando (CMD do Windows):**
+
+```cmd
+copy backend\.env.example backend\.env
+copy frontend\.env.example frontend\.env
 ```
 
 **backend/.env**
@@ -234,6 +252,8 @@ cp frontend/.env.example frontend/.env
 
 ## Instalação e execução
 
+Com o serviço do MySQL em execução e os arquivos `.env` salvos, instale e inicie o backend:
+
 ```bash
 cd backend
 npm install
@@ -242,9 +262,13 @@ npm run db:seed
 npm run dev
 ```
 
-O `npm install` do backend executa `prisma generate` automaticamente. `npm run db:migrate` aplica as migrations versionadas em `prisma/migrations` (`prisma migrate deploy`). `npm run db:seed` cadastra os veículos de exemplo e, se `DEMO_USER_EMAIL` e `DEMO_USER_PASSWORD` estiverem preenchidos, um usuário de demonstração com uma locação finalizada no histórico. O seed pode ser executado mais de uma vez sem duplicar dados. A API fica disponível em `http://localhost:3333/api`.
+O `npm install` do backend executa `prisma generate` automaticamente. `npm run db:migrate` aplica as migrations versionadas em `prisma/migrations` (`prisma migrate deploy`). `npm run db:seed` cadastra os veículos de exemplo e, se `DEMO_USER_EMAIL` e `DEMO_USER_PASSWORD` estiverem preenchidos, um usuário de demonstração com uma locação finalizada no histórico. O seed pode ser executado mais de uma vez sem duplicar dados.
 
-Em outro terminal:
+A API fica disponível em `http://localhost:3333/api`.
+
+> **Observação:** acessar `http://localhost:3333/api` diretamente pelo navegador retorna `{"erro":"Rota não encontrada."}` — isso é esperado e confirma que o servidor está em execução, pois os endpoints ficam sob `/api/auth`, `/api/veiculos` e `/api/locacoes`.
+
+Em **outro terminal**, instale e inicie o frontend:
 
 ```bash
 cd frontend
@@ -252,7 +276,7 @@ npm install
 npm run dev
 ```
 
-A interface fica disponível em `http://localhost:5173`.
+Acesse a interface do sistema pelo navegador em **`http://localhost:5173`**.
 
 Para entrar com o usuário de demonstração, use o e-mail e a senha definidos em `DEMO_USER_EMAIL` e `DEMO_USER_PASSWORD` no `backend/.env`. Também é possível criar uma conta pela tela de cadastro.
 
@@ -316,6 +340,13 @@ npm run start:teste
 cd frontend
 npm test
 ```
+## Problemas comuns
+
+* **`'prisma' não é reconhecido` ou `Cannot find module 'dotenv/config'`:** as dependências ainda não foram instaladas na pasta `backend`. Crie o arquivo `backend/.env` e rode `npm install` dentro de `backend`.
+* **`Cannot resolve environment variable: DATABASE_URL` durante o `npm install`:** o arquivo `backend/.env` ainda não existe ou não foi salvo (apenas o `.env.example` está presente). Copie o `.env.example` para `.env`, preencha `DATABASE_URL` e execute `npm install` novamente.
+* **`node -v` continua na versão antiga após instalar o Node 22 (Windows):** pode haver um conflito com o NVM no `PATH` (verifique com `where.exe node`). Se aparecer `nvm4w`, abra o terminal como Administrador e rode `nvm install 22` seguido de `nvm use 22`.
+* **MySQL `Error Code: 1396` ao executar `CREATE USER`:** o usuário `'locacao'@'localhost'` já existe no MySQL. Use o bloco SQL da seção *Configuração do MySQL* com `CREATE USER IF NOT EXISTS` e `ALTER USER`.
+* **`{"erro":"Rota não encontrada."}` ao abrir `http://localhost:3333/api`:** comportamento normal da API. Para usar o sistema visualmente, mantenha o backend rodando, inicie o frontend (`npm run dev` na pasta `frontend`) e acesse `http://localhost:5173`.
 
 ## Decisões de implementação
 
